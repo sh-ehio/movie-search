@@ -40,13 +40,15 @@ function App() {
   const [movieWriters, setMovieWriters] = useState("");
   const [movieStars, setMovieStars] = useState("");
   const [rating, setMovieRating] = useState("");
+  const [error, setError] = useState(true);
 
   const handleSearchbarChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchbarValue(e.target.value);
+    setError(true);
   };
 
   useEffect(() => {
-    if (searchbarValue) {
+    const delayFetch = setTimeout(() => {
       axios
         .get(
           `http://www.omdbapi.com/?apikey=${
@@ -56,6 +58,8 @@ function App() {
         .then((response) => {
           console.log(response.data);
           const data = response.data;
+          if (data?.Error && data?.Error === "Movie not found!")
+            setError(JSON.parse(data?.Response.toLowerCase()));
           setMovieTitle(data?.Title);
           setMovieDesc(data?.Plot);
           setMovieImg(data?.Poster);
@@ -67,7 +71,9 @@ function App() {
         .catch((error) => {
           console.error("Error fetching data: ", error);
         });
-    }
+    }, 2000);
+
+    return () => clearTimeout(delayFetch);
   }, [searchbarValue]);
 
   return (
@@ -79,7 +85,10 @@ function App() {
           handleChange={handleSearchbarChange}
         ></Searchbar>
       </Background>
-      {searchbarValue.length == 0 ? (
+
+      {!error ? (
+        <GetStarted>Movie not Found</GetStarted>
+      ) : searchbarValue.length == 0 ? (
         <GetStarted>Please enter the name of a movie to get started</GetStarted>
       ) : (
         <MovieCard

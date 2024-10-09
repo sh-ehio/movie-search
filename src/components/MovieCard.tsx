@@ -51,6 +51,12 @@ const InformationContainer = styled.div`
   justify-content: flex-end;
 `;
 
+const Loading = styled.p`
+  color: #97a3b6;
+  font-size: 1.5rem;
+  text-align: center;
+`;
+
 interface MovieCardProps {
   movieImg: string;
   movieTitle: string;
@@ -72,25 +78,32 @@ const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <CardContainer>
-      <MovieImage src={movieImg} alt="Picture of the Movie"></MovieImage>
-      <MovieInfoContainer>
-        <Title>{movieTitle}</Title>
-        <Description>{movieDesc}</Description>
-        <InformationContainer>
-          <Information>
-            Director: <strong>{movieDirector}</strong>
-          </Information>
-          <Information>
-            Writers: <strong>{movieWriters}</strong>
-          </Information>
-          <Information>
-            Stars:<strong>{movieStars}</strong>
-          </Information>
-          <Information>
-            IMDb Rating: <strong>{rating}</strong>
-          </Information>
-        </InformationContainer>
-      </MovieInfoContainer>
+      {!movieTitle ? (
+        <Loading>Loading...</Loading>
+      ) : (
+        <>
+          {" "}
+          <MovieImage src={movieImg} alt="Picture of the Movie"></MovieImage>
+          <MovieInfoContainer>
+            <Title>{movieTitle}</Title>
+            <Description>{movieDesc}</Description>
+            <InformationContainer>
+              <Information>
+                Director: <strong>{movieDirector}</strong>
+              </Information>
+              <Information>
+                Writers: <strong>{movieWriters}</strong>
+              </Information>
+              <Information>
+                Stars:<strong>{movieStars}</strong>
+              </Information>
+              <Information>
+                IMDb Rating: <strong>{rating}</strong>
+              </Information>
+            </InformationContainer>
+          </MovieInfoContainer>
+        </>
+      )}
     </CardContainer>
   );
 };
