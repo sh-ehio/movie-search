@@ -3,26 +3,32 @@ import styled from "styled-components";
 const CardContainer = styled.div`
   background-color: #111729;
   padding: 24px;
-  margin-top: 40px;
+  margin-top: 80px;
   display: grid;
   grid-template-columns: auto 1fr;
+  align-items: stretch;
   border: solid 1px #97a3b6;
   border-radius: 10px;
-  width: 50%;
   margin-right: auto;
   margin-left: auto;
   column-gap: 24px;
+  width: 60%;
+  margin-bottom: 10%;
+  box-sizing: border-box;
 `;
 
 const MovieInfoContainer = styled.div`
   display: grid;
 `;
 
-const MovieImage = styled.img``;
+const MovieImage = styled.img`
+  width: 250px;
+  height: auto;
+`;
 
 const Title = styled.p`
   font-size: 1.5rem;
-  color: white;
+  color: #f9f9f9;
   padding: 0;
   margin: 0;
 `;
@@ -35,6 +41,14 @@ const Description = styled.p`
 const Information = styled.p`
   font-size: 0.75rem;
   color: #97a3b6;
+  margin: 0;
+  padding: 0;
+`;
+
+const InformationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 interface MovieCardProps {
@@ -60,13 +74,22 @@ const MovieCard: React.FC<MovieCardProps> = ({
     <CardContainer>
       <MovieImage src={movieImg} alt="Picture of the Movie"></MovieImage>
       <MovieInfoContainer>
-        <Title>Title{movieTitle}</Title>
-        <p>Placeholder Tags</p>
+        <Title>{movieTitle}</Title>
         <Description>{movieDesc}</Description>
-        <Information>Director: {movieDirector}</Information>
-        <Information>Writers: {movieWriters}</Information>
-        <Information>Stars: {movieStars}</Information>
-        <Information>IMDb Rating: {rating}</Information>
+        <InformationContainer>
+          <Information>
+            Director: <strong>{movieDirector}</strong>
+          </Information>
+          <Information>
+            Writers: <strong>{movieWriters}</strong>
+          </Information>
+          <Information>
+            Stars:<strong>{movieStars}</strong>
+          </Information>
+          <Information>
+            IMDb Rating: <strong>{rating}</strong>
+          </Information>
+        </InformationContainer>
       </MovieInfoContainer>
     </CardContainer>
   );

@@ -29,11 +29,18 @@ const SearchbarInputField = styled.input`
   }
 `;
 
-const Searchbar = () => {
+interface SearchbarProps {
+  value: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Searchbar: React.FC<SearchbarProps> = ({ value, handleChange }) => {
   return (
     <SearchbarContainer>
       <SearchIconImg src={SearchIconImgSrc}></SearchIconImg>
       <SearchbarInputField
+        value={value}
+        onChange={handleChange}
         type="input"
         placeholder="Search movie"
       ></SearchbarInputField>
