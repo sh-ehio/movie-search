@@ -3,6 +3,7 @@ import "./App.css";
 import LogoImg from "./assets/OMDb-logo.svg";
 import BackgroundImg from "./assets/hero_bg.jpg";
 import Searchbar from "./components/Searchbar";
+import MovieCard from "./components/MovieCard";
 
 const Background = styled.div`
   position: relative;
@@ -28,6 +29,15 @@ function App() {
         <Logo src={LogoImg}></Logo>
         <Searchbar></Searchbar>
       </Background>
+      <MovieCard
+        movieImg="blub"
+        movieTitle="test"
+        movieDesc="test"
+        movieDirector="Raw raw"
+        movieWriters="ierggierbbeirg"
+        movieStars="geringeiniweg"
+        rating="giengeniwniwe"
+      ></MovieCard>
     </>
   );
 }
