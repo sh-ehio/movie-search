@@ -28,7 +28,7 @@ const GetStarted = styled.p`
   color: #97a3b6;
   font-size: 1.5rem;
   text-align: center;
-  padding-top: 20%;
+  padding-top: 10%;
 `;
 
 function App() {
@@ -89,7 +89,7 @@ function App() {
       {!error ? (
         <GetStarted>Movie not Found</GetStarted>
       ) : searchbarValue.length == 0 ? (
-        <GetStarted>Please enter the name of a movie to get started</GetStarted>
+        <GetStarted>Please enter the name of a movie to get started!</GetStarted>
       ) : (
         <MovieCard
           movieImg={movieImg}
