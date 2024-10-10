@@ -51,7 +51,7 @@ function App() {
     const delayFetch = setTimeout(() => {
       axios
         .get(
-          `http://www.omdbapi.com/?apikey=${
+          `https://www.omdbapi.com/?apikey=${
             import.meta.env.VITE_OMDB_API_KEY
           }&t=${searchbarValue.replace(" ", "+")}`
         )
