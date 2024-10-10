@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Background = styled.div`
   position: relative;
-  height: 450px;
+  height: 300px;
   background-image: url(${BackgroundImg});
   background-size: cover;
   background-position: center;
@@ -89,7 +89,9 @@ function App() {
       {!error ? (
         <GetStarted>Movie not Found</GetStarted>
       ) : searchbarValue.length == 0 ? (
-        <GetStarted>Please enter the name of a movie to get started!</GetStarted>
+        <GetStarted>
+          Please enter the name of a movie to get started!
+        </GetStarted>
       ) : (
         <MovieCard
           movieImg={movieImg}
